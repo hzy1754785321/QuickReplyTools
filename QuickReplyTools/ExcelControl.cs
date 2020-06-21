@@ -1,48 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace WindowsFormsApp3
+namespace QuickReplyTools
 {
-    public partial class Form1 : Form
+    public static class ExcelControl
     {
-        public Form1()
-        {
-            InitializeComponent();
-            InitExcelSetting();
-        }
-
-        Dictionary<string, string> replyDic = new Dictionary<string, string>();
-
-        List<String> blackList = new List<string>();
-
-        public string lastKeyWords;
-        private void InitExcelSetting()
-        {
-            var tableName = "Sheet1";
-            var fileName = "数据表.xlsx";
-            var filePath = System.IO.Directory.GetCurrentDirectory() + "/" + fileName;
-            var dataTbl = InputFromExcel(filePath, tableName);
-            for (int i = 0; i < dataTbl.Rows.Count; i++)
-            {
-                replyDic.Add(dataTbl.Rows[i][0].ToString(), dataTbl.Rows[i][1].ToString());
-            }
-        }
-
         #region 获取Excel数据表
         /// <summary>
         /// 获取Excel文件数据表列表
         /// </summary>
-        private static ArrayList GetExcelTables(string ExcelFileName)
+        public static ArrayList GetExcelTables(string ExcelFileName)
         {
             DataTable dt = new DataTable();
             ArrayList TablesList = new ArrayList();
@@ -108,7 +82,7 @@ namespace WindowsFormsApp3
         /// </summary>
         /// <param name="ExcelFilePath">Excel文件路径</param>
         /// <param name="TableName">数据表名，如果数据表名错误，默认为第一个数据表名</param>
-        private static DataTable InputFromExcel(string ExcelFilePath, string TableName)
+        public static DataTable InputFromExcel(string ExcelFilePath, string TableName)
         {
             ArrayList TableList = new ArrayList();
             TableList = GetExcelTables(ExcelFilePath);
@@ -152,58 +126,5 @@ namespace WindowsFormsApp3
         }
         #endregion Excel导出
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(keywordsText.Text))
-            {
-                MessageBox.Show("请先输入要查找的内容!");
-                return;
-            }
-            blackList.Clear();
-            findNextBtn.Enabled = true;
-            foreach (var data in replyDic)
-            {
-                if (keywordsText.Text.Contains(data.Key))
-                {
-                    replyText.Text = data.Value;
-                    Clipboard.SetDataObject(data.Value, true);
-                    lastKeyWords = data.Key;
-                    findNextBtn.Visible = true;
-                    return;
-                }
-            }
-            MessageBox.Show("没有找到对应的回复");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            blackList.Add(lastKeyWords);
-            bool isBlackWord = false;
-            foreach (var data in replyDic)
-            {
-                if (keywordsText.Text.Contains(data.Key))
-                {
-                    foreach (var word in blackList)
-                    {
-                        if (data.Key == word)
-                        {
-                            isBlackWord = true;
-                            break;
-                        }
-                    }
-                    if (isBlackWord)
-                    {
-                        isBlackWord = false;
-                        continue;
-                    }
-                    replyText.Text = data.Value;
-                    Clipboard.SetDataObject(data.Value, true);
-                    lastKeyWords = data.Key;
-                   // findNextBtn.Visible = true;
-                    return;
-                }
-            }
-            MessageBox.Show("没有找到对应的回复");
-        }
     }
 }
