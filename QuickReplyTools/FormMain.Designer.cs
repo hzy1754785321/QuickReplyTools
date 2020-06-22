@@ -59,10 +59,10 @@
             this.tabControl1.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Left;
             this.tabControl1.PageNorml = null;
             this.tabControl1.PageTextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tabControl1.SelectedIndex = 1;
+            this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(961, 968);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 1;
+            this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl1_DrawItem);
             // 
             // tpgQuickReply
@@ -73,7 +73,7 @@
             this.tpgQuickReply.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tpgQuickReply.Location = new System.Drawing.Point(76, 0);
             this.tpgQuickReply.Name = "tpgQuickReply";
-            this.tpgQuickReply.Size = new System.Drawing.Size(879, 960);
+            this.tpgQuickReply.Size = new System.Drawing.Size(885, 968);
             this.tpgQuickReply.TabIndex = 0;
             this.tpgQuickReply.TabItemImage = null;
             this.tpgQuickReply.Text = "快捷回复";
@@ -91,6 +91,7 @@
             this.tpgVideoLink.TabIndex = 1;
             this.tpgVideoLink.TabItemImage = null;
             this.tpgVideoLink.Text = "视频链接";
+            this.tpgVideoLink.Enter += new System.EventHandler(this.TpgVideoLink_Enter);
             // 
             // FormMain
             // 

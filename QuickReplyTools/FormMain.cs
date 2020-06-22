@@ -16,6 +16,7 @@ namespace QuickReplyTools
     public partial class FormMain : Form
     {
         private frmQuickReply frmQuickReply;
+        private frmVideoLink frmVedioLink;
         private bool m_tpgQuickReply = false;
 
         public FormMain()
@@ -45,6 +46,13 @@ namespace QuickReplyTools
             tpgQuickReply.Controls.Clear();
             tpgQuickReply.Controls.Add(frmQuickReply);
             m_tpgQuickReply = true;
+        }
+
+        private void TpgVideoLink_Enter(object sender, EventArgs e)
+        {
+            frmVedioLink = new frmVideoLink(this);
+            tpgVideoLink.Controls.Clear();
+            tpgVideoLink.Controls.Add(frmVedioLink);
         }
     }
 }

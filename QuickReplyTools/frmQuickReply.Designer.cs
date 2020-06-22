@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuickReply));
             this.resultText = new CCWin.SkinControl.SkinTextBox();
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel2 = new CCWin.SkinControl.SkinLabel();
@@ -45,8 +44,7 @@
             this.resultCombo = new CCWin.SkinControl.SkinComboBox();
             this.resultTempList = new CCWin.SkinControl.SkinListBox();
             this.skinLabel4 = new CCWin.SkinControl.SkinLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // resultText
@@ -90,6 +88,7 @@
             this.resultText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.resultText.WaterText = "";
             this.resultText.WordWrap = true;
+            this.resultText.DoubleClick += new System.EventHandler(this.ResultText_DoubleClick);
             // 
             // skinLabel3
             // 
@@ -129,16 +128,18 @@
             // 
             // subSearchCombo
             // 
+            this.subSearchCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.subSearchCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.subSearchCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.subSearchCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.subSearchCombo.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.subSearchCombo.FormattingEnabled = true;
             this.subSearchCombo.ItemHeight = 30;
             this.subSearchCombo.Location = new System.Drawing.Point(274, 167);
             this.subSearchCombo.Name = "subSearchCombo";
-            this.subSearchCombo.Size = new System.Drawing.Size(120, 28);
+            this.subSearchCombo.Size = new System.Drawing.Size(120, 36);
             this.subSearchCombo.TabIndex = 28;
             this.subSearchCombo.WaterText = "";
+            this.subSearchCombo.SelectedIndexChanged += new System.EventHandler(this.SubSearchCombo_SelectedIndexChanged);
             // 
             // subList
             // 
@@ -146,34 +147,42 @@
             this.subList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.subList.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.subList.FormattingEnabled = true;
+            this.subList.ImageVisble = false;
+            this.subList.IntegralHeight = false;
             this.subList.ItemHeight = 25;
             this.subList.Location = new System.Drawing.Point(274, 197);
             this.subList.Name = "subList";
-            this.subList.Size = new System.Drawing.Size(120, 254);
+            this.subList.Size = new System.Drawing.Size(121, 254);
             this.subList.TabIndex = 27;
             this.subList.SelectedIndexChanged += new System.EventHandler(this.SubList_SelectedIndexChanged);
             // 
             // classSearchCombo
             // 
+            this.classSearchCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.classSearchCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.classSearchCombo.CausesValidation = false;
             this.classSearchCombo.Cursor = System.Windows.Forms.Cursors.Default;
             this.classSearchCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.classSearchCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.classSearchCombo.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.classSearchCombo.FormattingEnabled = true;
             this.classSearchCombo.ItemHeight = 30;
             this.classSearchCombo.Location = new System.Drawing.Point(129, 167);
+            this.classSearchCombo.MaxDropDownItems = 15;
             this.classSearchCombo.Name = "classSearchCombo";
-            this.classSearchCombo.Size = new System.Drawing.Size(120, 28);
+            this.classSearchCombo.Size = new System.Drawing.Size(120, 36);
             this.classSearchCombo.TabIndex = 26;
             this.classSearchCombo.WaterText = "";
+            this.classSearchCombo.SelectedValueChanged += new System.EventHandler(this.ClassSearchCombo_SelectedValueChanged);
             // 
             // classList
             // 
             this.classList.Back = null;
+            this.classList.CausesValidation = false;
             this.classList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.classList.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.classList.FormattingEnabled = true;
-            this.classList.ItemHeight = 25;
+            this.classList.IntegralHeight = false;
+            this.classList.ItemHeight = 50;
             this.classList.Location = new System.Drawing.Point(129, 197);
             this.classList.Name = "classList";
             this.classList.Size = new System.Drawing.Size(120, 254);
@@ -268,16 +277,18 @@
             // 
             // resultCombo
             // 
+            this.resultCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.resultCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.resultCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.resultCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.resultCombo.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.resultCombo.FormattingEnabled = true;
             this.resultCombo.ItemHeight = 30;
             this.resultCombo.Location = new System.Drawing.Point(415, 167);
             this.resultCombo.Name = "resultCombo";
-            this.resultCombo.Size = new System.Drawing.Size(224, 28);
+            this.resultCombo.Size = new System.Drawing.Size(224, 36);
             this.resultCombo.TabIndex = 34;
             this.resultCombo.WaterText = "";
+            this.resultCombo.SelectedValueChanged += new System.EventHandler(this.ResultCombo_SelectedValueChanged);
             // 
             // resultTempList
             // 
@@ -285,12 +296,15 @@
             this.resultTempList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.resultTempList.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.resultTempList.FormattingEnabled = true;
+            this.resultTempList.ImageVisble = false;
+            this.resultTempList.IntegralHeight = false;
             this.resultTempList.ItemHeight = 25;
             this.resultTempList.Location = new System.Drawing.Point(415, 197);
             this.resultTempList.Name = "resultTempList";
             this.resultTempList.Size = new System.Drawing.Size(224, 254);
             this.resultTempList.TabIndex = 33;
             this.resultTempList.SelectedIndexChanged += new System.EventHandler(this.ResultTempList_SelectedIndexChanged);
+            this.resultTempList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ResultTempList_MouseDoubleClick);
             // 
             // skinLabel4
             // 
@@ -304,25 +318,23 @@
             this.skinLabel4.TabIndex = 35;
             this.skinLabel4.Text = "输出列表";
             // 
-            // pictureBox1
+            // label1
             // 
-            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(80, 139);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(43, 42);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(6, 684);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 17);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "已复制到粘贴板";
+            this.label1.Visible = false;
             // 
             // frmQuickReply
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 720);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.skinLabel4);
             this.Controls.Add(this.resultCombo);
             this.Controls.Add(this.resultTempList);
@@ -341,7 +353,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmQuickReply";
             this.Text = "frmQucikReply";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,6 +375,6 @@
         private CCWin.SkinControl.SkinComboBox resultCombo;
         private CCWin.SkinControl.SkinListBox resultTempList;
         private CCWin.SkinControl.SkinLabel skinLabel4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
